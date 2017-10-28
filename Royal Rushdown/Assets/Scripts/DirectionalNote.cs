@@ -22,15 +22,13 @@ public class DirectionalNote : MonoBehaviour {
     public void followEnemy(Transform enemyTransform, float offset)
     {
         transform.SetParent(enemyTransform);
-        transform.localPosition = Vector3.zero;
         heightOffset = offset;
-        transform.position = Vector3.up * heightOffset;
+        transform.localPosition = Vector3.up * heightOffset;
     }
     public void updateOffset(float newOffset)
     {
-        transform.localPosition = Vector3.zero;
         heightOffset = newOffset;
-        transform.position = Vector3.up * heightOffset;
+        transform.localPosition = Vector3.up * heightOffset;
 
 
     }
