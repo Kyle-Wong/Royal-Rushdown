@@ -16,6 +16,7 @@ public class MainMenuController : MonoBehaviour {
     public GameObject playButton;
     public GameObject creditsButton;
     public GameObject quitButton;
+    public GameObject backButton;
     public UIRevealer[] nameList;
     public UIRevealer[] roleList;
     public GameObject credits;
@@ -59,10 +60,9 @@ public class MainMenuController : MonoBehaviour {
     private IEnumerator revealCredits()
     {
         yield return new WaitForEndOfFrame();
-        for (int i = 0; i < nameList.Length; i++)
-        {
-            nameList[i].hideImmediately();
-        }
+        eventSystem.SetSelectedGameObject(backButton);
+
+        
         yield return new WaitForSeconds(creditsInitialDelay);
         for(int i = 0; i < nameList.Length; i++)
         {
@@ -80,8 +80,7 @@ public class MainMenuController : MonoBehaviour {
     public void creditsButtonPress()
     {
         credits.SetActive(true);
-        eventSystem.SetSelectedGameObject(null);
-        StopCoroutine(creditsReveal);
+
         
         creditsReveal = revealCredits();
         StartCoroutine(creditsReveal);
@@ -89,5 +88,17 @@ public class MainMenuController : MonoBehaviour {
     public void quitButtonPress()
     {
         Application.Quit();
+    }
+    public void backButtonPress()
+    {
+        StopCoroutine(creditsReveal);
+
+        eventSystem.SetSelectedGameObject(playButton);
+        for (int i = 0; i < nameList.Length; i++)
+        {
+            nameList[i].hideImmediately();
+            roleList[i].hideImmediately();
+        }
+        credits.SetActive(false);
     }
 }
