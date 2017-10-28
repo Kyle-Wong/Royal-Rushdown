@@ -43,7 +43,7 @@ public class LungeTrigger : MonoBehaviour {
             else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
             {
                 correctInput = true;
-                if (!TriggerZone.occupieds
+                if (!TriggerZone.occupied)
                 {
                     destroyNext = true;
                 }
