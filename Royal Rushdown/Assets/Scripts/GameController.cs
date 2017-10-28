@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 
 	// Use this for initialization
+    public static float globalSpeed;
     public enum GameState
     {
         PreGame, InGame, PostGame
@@ -23,11 +24,15 @@ public class GameController : MonoBehaviour {
     public Font defaultFont;
     public Font activeFont;
     private GameObject[] deathScreenUI;
-	void Start () {
+    private void Awake()
+    {
+        globalSpeed = 1f;
+    }
+    void Start () {
         restartText = restartButton.transform.parent.GetComponent<Text>();
         mainMenuText = mainMenuButton.transform.parent.GetComponent<Text>();
         deathScreenUI = GameObject.FindGameObjectsWithTag("DeathScreenUI");
-
+        
 	}
 	
 	// Update is called once per frame
