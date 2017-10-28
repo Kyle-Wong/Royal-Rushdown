@@ -16,9 +16,14 @@ public class MainMenuController : MonoBehaviour {
     public GameObject playButton;
     public GameObject creditsButton;
     public GameObject quitButton;
-
+    public UIRevealer[] nameList;
+    public UIRevealer[] roleList;
+    public GameObject credits;
+    public float creditsInitialDelay = 0;
+    public float creditsRepeatDelay = 0;
+    private IEnumerator creditsReveal;
 	void Start () {
-        
+        creditsReveal = revealCredits();
 	}
     void Update()
     {
@@ -27,9 +32,7 @@ public class MainMenuController : MonoBehaviour {
             case (MenuState.MainMenu):
                 updateMainMenu();
                 break;
-            case (MenuState.Credits):
-                updateCredits();
-                break;
+           
         }
     }
     private void updateMainMenu()
@@ -52,9 +55,21 @@ public class MainMenuController : MonoBehaviour {
         //{
         //}
     }
-    private void updateCredits()
+    
+    private IEnumerator revealCredits()
     {
-
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < nameList.Length; i++)
+        {
+            nameList[i].hideImmediately();
+        }
+        yield return new WaitForSeconds(creditsInitialDelay);
+        for(int i = 0; i < nameList.Length; i++)
+        {
+            nameList[i].revealUI();
+            roleList[i].revealUI();
+            yield return new WaitForSeconds(creditsRepeatDelay);
+        }
     }
 	// Update is called once per frame
 	
@@ -64,7 +79,12 @@ public class MainMenuController : MonoBehaviour {
     }
     public void creditsButtonPress()
     {
+        credits.SetActive(true);
+        eventSystem.SetSelectedGameObject(null);
+        StopCoroutine(creditsReveal);
         
+        creditsReveal = revealCredits();
+        StartCoroutine(creditsReveal);
     }
     public void quitButtonPress()
     {
