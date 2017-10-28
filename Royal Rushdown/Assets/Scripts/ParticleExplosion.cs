@@ -5,10 +5,9 @@ using UnityEngine;
 public class ParticleExplosion : MonoBehaviour {
 
     // Use this for initialization
-    public int particlesEmitted;
-    public float lifeTime;
+    public int particlesEmitted =15;
+    public float lifeTime = 2;
 	void Start () {
-        explode(15, 2);
 	}
 	
 	// Update is called once per frame
@@ -17,7 +16,10 @@ public class ParticleExplosion : MonoBehaviour {
 	}
     public void explode(int numParticles, float objLifeTime)
     {
+        GetComponent<ParticleSystem>().Play();
         GetComponent<ParticleSystem>().Emit(numParticles);
+        GetComponent<ParticleSystem>().Stop();
+
         Destroy(gameObject, objLifeTime);
     }
 }
