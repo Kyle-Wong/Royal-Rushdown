@@ -25,7 +25,7 @@ public class MoveLeft : MonoBehaviour {
                 transform.position += Vector3.left * speed * GameController.globalSpeed * Time.deltaTime;
                 if(speed < maxSpeed)
                 {
-                    speed += acceleration * Time.deltaTime;
+                    speed += acceleration * GameController.globalSpeed * Time.deltaTime;
                 }
             }
 		    
