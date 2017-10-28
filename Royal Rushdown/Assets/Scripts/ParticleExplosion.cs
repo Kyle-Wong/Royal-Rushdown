@@ -8,7 +8,7 @@ public class ParticleExplosion : MonoBehaviour {
     public int particlesEmitted;
     public float lifeTime;
 	void Start () {
-        explode(15, 2);
+        explode(particlesEmitted, lifeTime);
 	}
 	
 	// Update is called once per frame
