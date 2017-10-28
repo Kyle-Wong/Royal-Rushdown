@@ -13,11 +13,11 @@ public class Spawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spawnTime = min+range;
-		//InvokeRepeating ("decreaseRange", 3f, 3);
 		StartCoroutine(decreaseRange());
 	}
 
 	void SpawnMe(){
+//		var rightBorder = Camera.main.ViewportToWorldPoint(Vector3(1, 0, dist)).x;
 		Instantiate(spawnPrefab, transform.position, transform.rotation);
 	}
 	
