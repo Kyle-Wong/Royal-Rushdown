@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class MoveLeft : MonoBehaviour {
 	
-	public int speed = -5;
+	public float speed = .0005f;
 	public int delete_at = 0;
 
 	void Start () {
@@ -20,7 +19,7 @@ public class MoveLeft : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		else{
-
+			//transform.position = new Vector2 (transform.position.x + speed, transform.position.y);
 			GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0);
 		}
 
