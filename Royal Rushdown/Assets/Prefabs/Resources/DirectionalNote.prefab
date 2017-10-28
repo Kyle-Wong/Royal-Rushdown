@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4966895189209086}
   - component: {fileID: 212755599867239156}
   - component: {fileID: 114118706479594182}
+  - component: {fileID: 114332490059660502}
   m_Layer: 0
   m_Name: DirectionalNote
   m_TagString: Untagged
@@ -52,6 +53,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fdd92e7da532e48b4a535d01a76716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 1
+  desiredOffset: 0
+  moveDownSpeed: 7
+--- !u!114 &114332490059660502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053835038745126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d1a29f35fb1014abfd4128a9be8cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOn: 2
+  startColor: {r: 0, g: 1, b: 1, a: 1}
+  endColor: {r: 0, g: 1, b: 1, a: 0}
+  duration: 0.3
+  initialDelay: 0.1
 --- !u!212 &212755599867239156
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -86,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 742872cad738e7046aa610385579bf8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: faf321513ea9a7f4095654933209e489, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

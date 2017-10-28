@@ -10,25 +10,31 @@ public class DirectionalNote : MonoBehaviour {
         Up, Right, Down, Left
     }
     public Direction direction = Direction.Right;
-    public float heightOffset = 0;
+    public float desiredOffset;
+    public float moveDownSpeed;
     void Start () {
+
     }
 
     // Update is called once per frame
     void Update () {
+        if(transform.localPosition.y - desiredOffset > moveDownSpeed*Time.deltaTime)
+        {
+            transform.localPosition= transform.localPosition + Vector3.down * moveDownSpeed * Time.deltaTime;
+        } else
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, desiredOffset, 0);
+        }
 	}
     public void followEnemy(Transform enemyTransform, float offset)
     {
         transform.SetParent(enemyTransform);
-        heightOffset = offset;
-        transform.localPosition = Vector3.up * heightOffset;
+        transform.localPosition = Vector3.up * offset;
+        desiredOffset = offset;
     }
     public void updateOffset(float newOffset)
     {
-        heightOffset = newOffset;
-        transform.localPosition = Vector3.up * heightOffset;
-
-
+        desiredOffset = newOffset;
     }
     public int getDirection()
     {

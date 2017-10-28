@@ -60,7 +60,8 @@ public class NoteManager : MonoBehaviour {
         {
             
             int toReturn = getNextNoteDirection();
-            Destroy(noteList[0]);
+            noteList[0].GetComponent<ColorLerp>().startColorChange();
+            Destroy(noteList[0],.6f);
             noteList.RemoveAt(0);
             for (int i = 0; i < noteList.Count; i++)
             {
