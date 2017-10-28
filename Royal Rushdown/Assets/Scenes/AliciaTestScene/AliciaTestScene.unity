@@ -310,6 +310,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114008664319764286, guid: 5c3ebaa90d9c74c3eaa0df045e2d118a,
+        type: 2}
+      propertyPath: spawnTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 33251899558376534, guid: 5c3ebaa90d9c74c3eaa0df045e2d118a, type: 2}
     - {fileID: 65606132504017856, guid: 5c3ebaa90d9c74c3eaa0df045e2d118a, type: 2}

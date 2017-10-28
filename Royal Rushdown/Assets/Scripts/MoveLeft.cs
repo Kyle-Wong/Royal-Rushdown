@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour {
 	
-	public float speed = .0005f;
+	public float speed = -5;
 	public int delete_at = 0;
 
 	void Start () {
@@ -19,8 +19,8 @@ public class MoveLeft : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		else{
-			//transform.position = new Vector2 (transform.position.x + speed, transform.position.y);
-			GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0);
+			transform.position = new Vector2 (transform.position.x + (speed*Time.deltaTime), transform.position.y);
+		
 		}
 
 
