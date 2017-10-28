@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour {
 	
-	public float speed = -5;
+	public float speed = 5;
 	public int delete_at = 0;
-
+    public float acceleration = 0;
+    public float maxSpeed = 5;
 	void Start () {
 		
 
@@ -19,8 +20,15 @@ public class MoveLeft : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		else{
-			transform.position = new Vector2 (transform.position.x + (speed*Time.deltaTime*GameController.globalSpeed), transform.position.y);
-		
+            if (GameController.gameState == GameController.GameState.InGame)
+            {
+                transform.position += Vector3.left * speed * GameController.globalSpeed * Time.deltaTime;
+                if(speed < maxSpeed)
+                {
+                    speed += acceleration * Time.deltaTime;
+                }
+            }
+		    
 		}
 
 

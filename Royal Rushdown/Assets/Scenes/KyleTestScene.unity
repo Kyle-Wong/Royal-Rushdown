@@ -231,7 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855182ec3d963d84f8fe5e688f290432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
   eventSystem: {fileID: 754932903}
   restartButton: {fileID: 220217191}
   mainMenuButton: {fileID: 1980845038}

@@ -15,7 +15,11 @@ public class LoopObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += Vector3.left * speed * Time.deltaTime * GameController.globalSpeed;
+        if (GameController.gameState == GameController.GameState.InGame)
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime * GameController.globalSpeed;
+
+        }
         
 	}
 }

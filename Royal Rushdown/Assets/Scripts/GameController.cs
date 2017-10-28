@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
         PreGame, InGame, PostGame
     }
    
-    public GameState gameState;
+    public static GameState gameState;
     public EventSystem eventSystem;
     
     public GameObject restartButton;
@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
     private void Awake()
     {
         globalSpeed = 1f;
+        gameState = GameState.InGame;
     }
     void Start () {
         restartText = restartButton.transform.parent.GetComponent<Text>();
