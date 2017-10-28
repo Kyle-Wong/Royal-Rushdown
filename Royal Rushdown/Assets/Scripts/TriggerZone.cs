@@ -55,6 +55,7 @@ public class TriggerZone : MonoBehaviour
             {
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
                 boneExplosion.transform.position = lister[0].transform.position;
+                boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
                 Destroy(lister[0]);
             }
         }
