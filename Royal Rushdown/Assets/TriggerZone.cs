@@ -2,46 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerZone : MonoBehaviour {
+public class TriggerZone : MonoBehaviour
+{
 
     public int nextNote;
+    public List<GameObject> lister;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+        lister = new List<GameObject>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") == true)
+        {
+            lister.Add(other.gameObject);
+        }
+
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-           
+
         if (other.gameObject.CompareTag("Enemy") == true)
         {
-            nextNote = other.gameObject.GetComponent<NoteManager>().getNextNoteDirection();
+            print(lister.Count);
+            nextNote = lister[0].GetComponent<NoteManager>().getNextNoteDirection();
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
             {
-                other.gameObject.GetComponent<NoteManager>().removeFront();
+                lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
+            else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
             {
-                other.gameObject.GetComponent<NoteManager>().removeFront();
+                lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
+            else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
             {
-                other.gameObject.GetComponent<NoteManager>().removeFront();
+                lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
+            else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
             {
-                other.gameObject.GetComponent<NoteManager>().removeFront();
+                lister[0].GetComponent<NoteManager>().removeFront();
             }
+
             if (other.gameObject.GetComponent<NoteManager>().empty())
             {
-                Destroy(other.gameObject);
+              
+                Destroy(lister[0]);
             }
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.gameObject.Equals(null))
+        {
+            Destroy(collision.gameObject);
+            lister.RemoveAt(0);
+        }
+
+    }
+
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 }
