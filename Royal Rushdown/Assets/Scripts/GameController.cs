@@ -26,8 +26,8 @@ public class GameController : MonoBehaviour {
 	void Start () {
         restartText = restartButton.transform.parent.GetComponent<Text>();
         mainMenuText = mainMenuButton.transform.parent.GetComponent<Text>();
-        setGameState(2);
         deathScreenUI = GameObject.FindGameObjectsWithTag("DeathScreenUI");
+
 	}
 	
 	// Update is called once per frame
