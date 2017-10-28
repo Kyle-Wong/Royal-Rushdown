@@ -103,5 +103,17 @@ public class NoteManager : MonoBehaviour {
         result += "end";
         print(result);
     }
-    
+    public void flashColor(Color initialColor, Color endColor, float duration, float initialDelay)
+    {
+        if (!empty())
+        {
+            noteList[0].GetComponent<ColorLerp>().setColors(initialColor, endColor);
+            noteList[0].GetComponent<ColorLerp>().initialDelay = initialDelay;
+            noteList[0].GetComponent<ColorLerp>().duration = duration;
+            noteList[0].GetComponent<ColorLerp>().startColorChange();
+        } else
+        {
+            print("NO NOTES TO BE FOUND HERE");
+        }
+    }
 }
