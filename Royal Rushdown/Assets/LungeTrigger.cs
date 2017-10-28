@@ -89,10 +89,12 @@ public class LungeTrigger : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (listo.Count > 1) { }
-        if (listo[0].gameObject.Equals(null))
+        if (listo.Count > 1)
         {
-            listo.RemoveAt(0);
+            if (listo[0].gameObject.Equals(null))
+            {
+                listo.RemoveAt(0);
+            }
         }
     }
 	
