@@ -12,20 +12,23 @@ public class DirectionalNote : MonoBehaviour {
     public Direction direction = Direction.Right;
     public float heightOffset = 0;
     void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        transform.position = Vector3.zero;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 	}
     public void followEnemy(Transform enemyTransform, float offset)
     {
         transform.SetParent(enemyTransform);
+        transform.position = Vector3.zero;
         heightOffset = offset;
         transform.position = Vector3.up * heightOffset;
     }
     public void updateOffset(float newOffset)
     {
+        transform.position = Vector3.zero;
         heightOffset = newOffset;
         transform.position = Vector3.up * heightOffset;
 
