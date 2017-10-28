@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerZone : MonoBehaviour
+public class FightZone : MonoBehaviour
 {
 
     public int nextNote;
@@ -37,22 +37,22 @@ public class TriggerZone : MonoBehaviour
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
+            if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (LungeTrigger.destroyNext){
+            if (LungeTrigger.destroyNext){
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
                 LungeTrigger.destroyNext = false;

@@ -35,7 +35,7 @@ public class LungeTrigger : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
             {
                 correctInput = true;
-                if (!TriggerZone.occupied)
+                if (!FightZone.occupied)
                 {
                     destroyNext = true;
                 }
@@ -43,7 +43,7 @@ public class LungeTrigger : MonoBehaviour {
             else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
             {
                 correctInput = true;
-                if (!TriggerZone.occupied)
+                if (!FightZone.occupied)
                 {
                     destroyNext = true;
                 }
@@ -51,7 +51,7 @@ public class LungeTrigger : MonoBehaviour {
             else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
             {
                 correctInput = true;
-                if (!TriggerZone.occupied)
+                if (!FightZone.occupied)
                 {
                     destroyNext = true;
                 }
@@ -59,13 +59,13 @@ public class LungeTrigger : MonoBehaviour {
             else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
             {
                 correctInput = true;
-                if (!TriggerZone.occupied)
+                if (!FightZone.occupied)
                 {
                     destroyNext = true;
                 }
             }
 
-            if (correctInput && !TriggerZone.occupied)
+            if (correctInput && !FightZone.occupied)
             {
                 GameController.globalSpeed = 10;
             }
