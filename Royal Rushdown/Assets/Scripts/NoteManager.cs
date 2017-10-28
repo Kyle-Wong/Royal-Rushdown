@@ -13,20 +13,26 @@ public class NoteManager : MonoBehaviour {
     public string prefabName;
     public float listOffset;
     public float noteOffset;
+    public bool debug = false;
     private void Awake()
     {
         noteList = new List<GameObject>();
+        if (debug)
+        {
+            addNote(Direction.Right);
+            addNote(Direction.Down);
+            addNote(Direction.Left);
+            addNote(Direction.Up);
+        }
     }
     void Start () {
-        addNote(Direction.Right);
-        addNote(Direction.Down);
-        addNote(Direction.Left);
-        addNote(Direction.Up);
+        
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (debug && Input.GetKeyDown(KeyCode.Space))
         {
             printNotes();
             removeFront();

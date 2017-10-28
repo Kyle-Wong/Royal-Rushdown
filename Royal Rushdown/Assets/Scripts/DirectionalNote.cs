@@ -12,8 +12,6 @@ public class DirectionalNote : MonoBehaviour {
     public Direction direction = Direction.Right;
     public float heightOffset = 0;
     void Start () {
-        transform.localPosition = Vector3.zero;
-
     }
 
     // Update is called once per frame
