@@ -19,7 +19,7 @@ public class MoveLeft : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		else{
-			transform.position = new Vector2 (transform.position.x + (speed*Time.deltaTime), transform.position.y);
+			transform.position = new Vector2 (transform.position.x + (speed*Time.deltaTime*GameController.globalSpeed), transform.position.y);
 		
 		}
 
