@@ -6,7 +6,8 @@ public class LungeTrigger : MonoBehaviour {
 
     public int nextNote;
     public List<GameObject> listo;
-    public bool correctInput = false;
+    public static bool correctInput = false;
+    public static bool destroyNext = false;
 
 
     // Use this for initialization
@@ -28,33 +29,50 @@ public class LungeTrigger : MonoBehaviour {
     {
 
         if (other.gameObject.CompareTag("Enemy") == true)
-        {
+        { 
+            print(listo.Count);
+            nextNote = listo[0].GetComponent<NoteManager>().getNextNoteDirection();
+            if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
+            {
+                correctInput = true;
+                if (!TriggerZone.occupied)
+                {
+                    destroyNext = true;
+                }
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
+            {
+                correctInput = true;
+                if (!TriggerZone.occupieds
+                {
+                    destroyNext = true;
+                }
+            }
+            else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
+            {
+                correctInput = true;
+                if (!TriggerZone.occupied)
+                {
+                    destroyNext = true;
+                }
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
+            {
+                correctInput = true;
+                if (!TriggerZone.occupied)
+                {
+                    destroyNext = true;
+                }
+            }
 
-            print("Speedup");
-            GameController.globalSpeed = 3;
-            //print(listo.Count);
-            //nextNote = listo[0].GetComponent<NoteManager>().getNextNoteDirection();
-            //if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
-            //{
-            //    correctInput = true;
-            //}
-            //else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
-            //{
-            //    correctInput = true;
-            //}
-            //else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
-            //{
-            //    correctInput = true;
-            //}
-            //else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
-            //{
-            //    correctInput = true;
-            //}
-
-            //if (correctInput)
-            //{
-            //    GameController.globalSpeed = 3; 
-            //}
+            if (correctInput && !TriggerZone.occupied)
+            {
+                GameController.globalSpeed = 10;
+            }
+            else
+            {
+                GameController.globalSpeed = 1;
+            }
         }
     }
 
@@ -62,15 +80,20 @@ public class LungeTrigger : MonoBehaviour {
     {
         if (!collision.gameObject.Equals(null))
         {
-            //listo.RemoveAt(0);
-            print("Exit");
+            correctInput = false;
+            listo.RemoveAt(0);
             GameController.globalSpeed = 1;
         }
 
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update() {
+        if (listo.Count > 1) { }
+        if (listo[0].gameObject.Equals(null))
+        {
+            listo.RemoveAt(0);
+        }
+    }
+	
 }

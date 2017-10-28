@@ -7,6 +7,7 @@ public class TriggerZone : MonoBehaviour
 
     public int nextNote;
     public List<GameObject> lister;
+    public static bool occupied = false;
 
     // Use this for initialization
     void Start()
@@ -16,6 +17,7 @@ public class TriggerZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        occupied = true;
         if (other.gameObject.CompareTag("Enemy") == true)
         {
             lister.Add(other.gameObject);
@@ -25,7 +27,7 @@ public class TriggerZone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
+        occupied = true;
         if (other.gameObject.CompareTag("Enemy") == true)
         {
             print(lister.Count);
@@ -50,7 +52,11 @@ public class TriggerZone : MonoBehaviour
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-
+            else if (LungeTrigger.destroyNext){
+                lister[0].GetComponent<ColorLerp>().startColorChange();
+                lister[0].GetComponent<NoteManager>().removeFront();
+                LungeTrigger.destroyNext = false;
+            }
             if (other.gameObject.GetComponent<NoteManager>().empty())
             {
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
@@ -62,6 +68,7 @@ public class TriggerZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        occupied = false;
         if (!collision.gameObject.Equals(null))
         {
             Destroy(collision.gameObject);
