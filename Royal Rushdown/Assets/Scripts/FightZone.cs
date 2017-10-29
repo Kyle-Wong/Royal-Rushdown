@@ -1,4 +1,4 @@
-
+﻿
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +63,7 @@ public class FightZone : MonoBehaviour
             timer = 0;
         }
 
-        if (lister.Count > 0)
+        if (lister.Count > 0 && GameController.gameState == GameController.GameState.InGame)
         {
             closestEnemy = getClosestEnemy();
             nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
@@ -72,29 +72,37 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (LungeTrigger.destroyNext)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
+                CamShake.shaking = true;
                 //knockBackAllEnemies();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -108,6 +116,7 @@ public class FightZone : MonoBehaviour
                 boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
                 Spawn.enemyList.Remove(closestEnemy);
+                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .1f, GameController.maxSpeed);
                 Destroy(closestEnemy);
             }
         }

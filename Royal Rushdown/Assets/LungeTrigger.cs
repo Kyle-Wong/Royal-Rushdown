@@ -37,7 +37,7 @@ public class LungeTrigger : MonoBehaviour {
         {
             correctInput = false;
             lister.Remove(collision.gameObject);
-            GameController.globalSpeed = 1;
+            GameController.globalSpeed = GameController.defaultSpeed;
         }
 
     }
@@ -51,7 +51,7 @@ public class LungeTrigger : MonoBehaviour {
                 lister.RemoveAt(0);
             }
         }
-        if (lister.Count >= 1 && !FightZone.occupied)
+        if (lister.Count >= 1 && !FightZone.occupied && GameController.gameState == GameController.GameState.InGame)
         {
             closestEnemy = getClosestEnemy();
             nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
@@ -102,7 +102,7 @@ public class LungeTrigger : MonoBehaviour {
             }
             else
             {
-                GameController.globalSpeed = 1;
+                GameController.globalSpeed = GameController.defaultSpeed;
             }
         }
         

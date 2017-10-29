@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
     public static float globalSpeed;
+    public static float defaultSpeed;
+    public static float maxSpeed;
     public enum GameState
     {
         PreGame, InGame, PostGame
@@ -27,6 +29,8 @@ public class GameController : MonoBehaviour {
     private void Awake()
     {
         globalSpeed = 1f;
+        defaultSpeed = 1f;
+        maxSpeed = 2.5f;
         gameState = GameState.InGame;
     }
     void Start () {
