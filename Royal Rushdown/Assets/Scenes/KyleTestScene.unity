@@ -636,8 +636,8 @@ MonoBehaviour:
   noteCountVariation: 0.33
   NoteVariety: 1
   averageNoteGrowth: 0.08
-  noteVarietyGrowth: 0.12
-  spawnTimeRangeDecrease: 0.1
+  noteVarietyGrowth: 0.06
+  spawnTimeRangeDecrease: 0.05
 --- !u!23 &343911837
 MeshRenderer:
   m_ObjectHideFlags: 0
