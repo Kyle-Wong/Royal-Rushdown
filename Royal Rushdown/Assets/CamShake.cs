@@ -24,13 +24,14 @@ public class CamShake : MonoBehaviour {
 
         if (shaking == true)
         {
-            if (xShake == 0) { }
-            xShake = Random.Range(-1, 1);
-            yShake = Random.Range(-1, 1);
-
+            if (xShake == 0)
+            {
+                xShake = Random.Range(-.2f, .2f);
+                yShake = Random.Range(-.2f, .2f);
+            }
 
             timer += timer + Time.deltaTime;
-            gameObject.transform.position = new Vector2(xShake, yShake);
+            gameObject.transform.position = new Vector3(xStart + xShake, yStart+ yShake, -10);
         }
         if (timer > .1)
         {
@@ -38,10 +39,15 @@ public class CamShake : MonoBehaviour {
             shaking = false;
         }
 
-        if (shaking == false && gameObject.transform.position.x != xStart && gameObject.transform.position.y != yStart)
+        if (shaking == false)
         {
-            gameObject.transform.position = new Vector2(-xShake, -yShake);
+            gameObject.transform.position = new Vector3(xStart, yStart, -10);
 
+        }
+        else
+        {
+            xShake = 0;
+            yShake = 0;
         }
     }
 	
