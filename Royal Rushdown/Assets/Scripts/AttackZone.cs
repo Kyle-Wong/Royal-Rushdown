@@ -70,6 +70,7 @@ public class AttackZone : MonoBehaviour {
                         GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
                         boneExplosion.transform.position = closestEnemy.transform.position+ Vector3.down*0.5f;
                         boneExplosion.GetComponent<ParticleExplosion>().explode(20, 2);
+                        enemies.Remove(closestEnemy);
                         Spawn.enemyList.Remove(closestEnemy);
                         GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .03f, GameController.maxSpeed);
                         Destroy(closestEnemy);
