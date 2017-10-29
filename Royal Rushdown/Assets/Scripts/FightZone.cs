@@ -72,29 +72,37 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
+                CamShake.shaking = true;
+
             }
             else if (LungeTrigger.destroyNext)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
+                CamShake.shaking = true;
                 //knockBackAllEnemies();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
