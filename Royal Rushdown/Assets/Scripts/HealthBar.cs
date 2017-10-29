@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(GameController.gameState == GameController.GameState.InGame && Mathf.InverseLerp(0,100,player.health) >= .99f)
+		if(GameController.gameState != GameController.GameState.InGame || Mathf.InverseLerp(0,100,player.health) >= .99f)
         {
             myImage.enabled = false;
             childImage.enabled = false;

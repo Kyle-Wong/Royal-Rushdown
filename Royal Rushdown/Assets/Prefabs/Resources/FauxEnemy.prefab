@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 61016120809215694}
   - component: {fileID: 114757103771956688}
   m_Layer: 9
-  m_Name: FauxEnemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteList: []
   prefabName: DirectionalNote
-  listOffset: 1.5
+  listOffset: 3
   noteOffset: 1.5
   debug: 0
 --- !u!114 &114757103771956688
