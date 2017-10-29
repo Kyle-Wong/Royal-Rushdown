@@ -51,8 +51,9 @@ public class LungeTrigger : MonoBehaviour {
                 lister.RemoveAt(0);
             }
         }
-        if (lister.Count >= 1 && !FightZone.occupied && GameController.gameState == GameController.GameState.InGame)
+        if (lister.Count >= 1 && !FightZone.occupied && GameController.gameState == GameController.GameState.InGame && !FightZone.killThisFrame)
         {
+            FightZone.killThisFrame = false;
             closestEnemy = getClosestEnemy();
             nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)

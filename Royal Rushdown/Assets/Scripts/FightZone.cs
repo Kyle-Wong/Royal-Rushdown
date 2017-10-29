@@ -11,8 +11,9 @@ public class FightZone : MonoBehaviour
     public static bool occupied = false;
     public static bool hitReady;
     private GameObject closestEnemy;
-    public static bool inputThisFrame;
+    public static bool killThisFrame;
     public float knockBackVelocity = 0;
+    
     // Use this for initialization
     void Start()
     {
@@ -62,7 +63,7 @@ public class FightZone : MonoBehaviour
             hitReady = true;
             timer = 0;
         }
-
+        killThisFrame = false;
         if (lister.Count > 0 && GameController.gameState == GameController.GameState.InGame)
         {
             closestEnemy = getClosestEnemy();
@@ -114,10 +115,11 @@ public class FightZone : MonoBehaviour
             {
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
                 boneExplosion.transform.position = closestEnemy.transform.position;
-                boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
+                boneExplosion.GetComponent<ParticleExplosion>().explode(25, 2);
                 Spawn.enemyList.Remove(closestEnemy);
                 GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .1f, GameController.maxSpeed);
                 Destroy(closestEnemy);
+                killThisFrame = true;
             }
         }
     }
