@@ -9,6 +9,7 @@ public class FightZone : MonoBehaviour
     public List<GameObject> lister;
     public static bool occupied = false;
     public static bool hitReady;
+    public static bool knockback;
 
     // Use this for initialization
     void Start()
@@ -69,31 +70,37 @@ public class FightZone : MonoBehaviour
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
+                knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
+                knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
+                knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
+                knockback = true;
             }
             else if (LungeTrigger.destroyNext)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
                 LungeTrigger.destroyNext = false;
+                knockback = true;
             }
             else
             {
-                hitReady = false;
+                //hitReady = false;
+                hitReady = true;
             }
             if (lister[0].gameObject.GetComponent<NoteManager>().empty())
             {
