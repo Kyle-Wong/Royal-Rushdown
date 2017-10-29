@@ -9,7 +9,7 @@ public class LungeTrigger : MonoBehaviour {
     public static bool correctInput = false;
     public static bool destroyNext = false;
     private GameObject closestEnemy;
-
+    private bool lungedThisFrame = false;
     // Use this for initialization
     void Start () {
         lister = new List<GameObject>();
@@ -51,13 +51,19 @@ public class LungeTrigger : MonoBehaviour {
                 lister.RemoveAt(0);
             }
         }
+        lungedThisFrame = false;
         if (lister.Count >= 1 && !FightZone.occupied && GameController.gameState == GameController.GameState.InGame && !FightZone.killThisFrame)
         {
+
             FightZone.killThisFrame = false;
             closestEnemy = getClosestEnemy();
             nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
             {
+                if (!correctInput)
+                {
+                    lungedThisFrame = true;
+                }
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
@@ -68,6 +74,10 @@ public class LungeTrigger : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
             {
+                if (!correctInput)
+                {
+                    lungedThisFrame = true;
+                }
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
@@ -78,6 +88,10 @@ public class LungeTrigger : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
             {
+                if (!correctInput)
+                {
+                    lungedThisFrame = true;
+                }
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
@@ -88,6 +102,10 @@ public class LungeTrigger : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
             {
+                if (!correctInput)
+                {
+                    lungedThisFrame = true;
+                }
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
@@ -100,6 +118,14 @@ public class LungeTrigger : MonoBehaviour {
             if (correctInput && !FightZone.occupied)
             {
                 GameController.globalSpeed = 5;
+                if (lungedThisFrame)
+                {
+                    int enemyCount = Spawn.enemyList.Count;
+                    for (int i = 0; i < enemyCount; ++i)
+                    {
+                        Spawn.enemyList[i].GetComponent<MoveLeft>().speed = Mathf.Max(3, Spawn.enemyList[i].GetComponent<MoveLeft>().speed);
+                    }
+                }
             }
             else
             {
