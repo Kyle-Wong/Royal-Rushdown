@@ -13,12 +13,18 @@ public class FightZone : MonoBehaviour
     private GameObject closestEnemy;
     public static bool killThisFrame;
     public float knockBackVelocity = 3;
-    
+    public float holdAttackFrameDuration;
+    private IEnumerator attackFrameFunction;
+    public GameObject player;
+    public Sprite[] attackFrames;
+    private int lastAttackIndex;
     // Use this for initialization
     void Start()
     {
         hitReady = true;
         lister = new List<GameObject>();
+        attackFrameFunction = holdAttackFrame(0, 0);
+        lastAttackIndex = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -74,6 +80,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
                 CamShake.shaking = true;
+                attack();
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
@@ -81,6 +88,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
                 CamShake.shaking = true;
+                attack();
 
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
@@ -89,7 +97,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
                 CamShake.shaking = true;
-
+                attack();
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
@@ -97,7 +105,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockBackAllEnemies();
                 CamShake.shaking = true;
-
+                attack();
             }
             else if (LungeTrigger.destroyNext)
             {
@@ -105,6 +113,7 @@ public class FightZone : MonoBehaviour
                 LungeTrigger.destroyNext = false;
                 CamShake.shaking = true;
                 knockBackAllEnemies();
+                attack();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -115,7 +124,7 @@ public class FightZone : MonoBehaviour
             {
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
                 boneExplosion.transform.position = closestEnemy.transform.position;
-                boneExplosion.GetComponent<ParticleExplosion>().explode(25, 2);
+                boneExplosion.GetComponent<ParticleExplosion>().explode(20, 2);
                 Spawn.enemyList.Remove(closestEnemy);
                 GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .1f, GameController.maxSpeed);
                 Destroy(closestEnemy);
@@ -158,5 +167,28 @@ public class FightZone : MonoBehaviour
         {
             Spawn.enemyList[i].GetComponent<MoveLeft>().speed = -knockBackVelocity;
         }
+    }
+    private void attack()
+    {
+        StopCoroutine(attackFrameFunction);
+        int rng = 0;
+        while (attackFrames.Length > 1)
+        {
+            rng = Random.Range(0, attackFrames.Length);
+            if(rng != lastAttackIndex)
+            {
+                break;
+            }
+        }
+        lastAttackIndex = rng;
+        attackFrameFunction = holdAttackFrame(holdAttackFrameDuration, rng);
+        StartCoroutine(attackFrameFunction);
+    }
+    private IEnumerator holdAttackFrame(float duration, int attackFrameIndex)
+    {
+        player.GetComponent<Animator>().enabled = false;
+        player.GetComponent<SpriteRenderer>().sprite = attackFrames[attackFrameIndex];
+        yield return new WaitForSeconds(duration);
+        player.GetComponent<Animator>().enabled = true;
     }
 }
