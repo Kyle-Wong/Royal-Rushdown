@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class FightZone : MonoBehaviour
 {
-
+    public static float timer = 0;
     public int nextNote;
     public List<GameObject> lister;
     public static bool occupied = false;
+    public static bool hitReady;
 
     // Use this for initialization
     void Start()
     {
+        hitReady = true;
         lister = new List<GameObject>();
     }
 
@@ -48,26 +50,37 @@ public class FightZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(timer);
+        print(hitReady);
+        timer = timer + Time.deltaTime;
+
+        if (timer > 1)
+        {
+            hitReady = true;
+            timer = 0;
+        }
         if (lister.Count > 0)
         {
             print(lister.Count);
             nextNote = lister[0].GetComponent<NoteManager>().getNextNoteDirection();
-            if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0 && hitReady)
+            {
+                lister[0].GetComponent<ColorLerp>().startColorChange();
+                lister[0].GetComponent<NoteManager>().removeFront();
+                hitReady = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
+            {
+                lister[0].GetComponent<ColorLerp>().startColorChange();
+                lister[0].GetComponent<NoteManager>().removeFront();
+                hitReady = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
-            {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
-            {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
                 lister[0].GetComponent<ColorLerp>().startColorChange();
                 lister[0].GetComponent<NoteManager>().removeFront();

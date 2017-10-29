@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 124462810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cae02881001374f80eaa83506040a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 32cebc8adee25364d9fcff16a0b3f940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextNote: 0
@@ -456,6 +456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPrefab: {fileID: 1079760831573336, guid: f2ad22965e09d494db93028e587328a0,
     type: 2}
+  averageNotes: 1
+  noteCountVariation: 0.33
+  NoteVariety: 1
 --- !u!23 &640969049
 MeshRenderer:
   m_ObjectHideFlags: 0
