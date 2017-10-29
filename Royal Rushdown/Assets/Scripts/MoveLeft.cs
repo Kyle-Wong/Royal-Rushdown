@@ -16,9 +16,35 @@ public class MoveLeft : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+<<<<<<< Updated upstream
         if(gameObject.transform.position.x < delete_at)
 		{
             Spawn.enemyList.Remove(gameObject);
+=======
+//        if (FightZone.knockback)
+//        {
+//            //if(startPos == 0)
+//            //{
+//            //    startPos = gameObject.transform.position.x;
+//            //}
+//            //if(gameObject.transform.position.x < startPos - 5000)
+//            //{
+//            //    transform.position += Vector3.left * speed * Time.deltaTime * GameController.globalSpeed * 4;
+//            //}
+//            //else
+//            //{
+//            //    startPos = 0;
+//            //    FightZone.knockback = false;
+//            //}
+//            speed = -5;
+//            FightZone.knockback = false;
+//        }
+//		else if(gameObject.transform.position.x < delete_at)
+//		{
+//			Destroy (gameObject);
+//		}
+		if (gameObject.transform.position.x < delete_at) {
+>>>>>>> Stashed changes
 			Destroy (gameObject);
 		}
 		else{
