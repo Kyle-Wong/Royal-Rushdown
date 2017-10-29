@@ -63,7 +63,6 @@ public class Spawn : MonoBehaviour {
     {
         List<int> tempList = new List<int>(list);
         int[] result = new int[newLength];
-        string toPrint = "newList";
         for(int i = 0; i < newLength; ++i)
         {
             int rng = Random.Range(0, tempList.Count);
@@ -71,9 +70,7 @@ public class Spawn : MonoBehaviour {
 
             tempList.RemoveAt(rng);
             
-            toPrint += ":" + result[i];
         }
-        print(toPrint);
         return result;
     }
 }
