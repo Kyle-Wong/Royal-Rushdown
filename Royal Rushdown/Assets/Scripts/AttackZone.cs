@@ -16,6 +16,7 @@ public class AttackZone : MonoBehaviour {
     private IEnumerator attackFrameFunction;
     public Sprite[] attackFrames;
     private int lastAttackIndex;
+    public static int combo = 0;
     void Start () {
         enemies = new List<GameObject>();
         attackFrameFunction = holdAttackFrame(0, 0);
@@ -129,7 +130,7 @@ public class AttackZone : MonoBehaviour {
     }
     private void attack()
     {
-        hitCounter++;
+        combo++;
         StopCoroutine(attackFrameFunction);
         int rng = 0;
         while (attackFrames.Length > 1)
