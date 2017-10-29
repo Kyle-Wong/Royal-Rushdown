@@ -131,10 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3887a2e63f7d74b40add182a83a6f5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXVel: 3
-  maxXVel: 10
-  minYVel: 5
-  maxYVel: 10
+  minXVel: -5
+  maxXVel: 15
+  minYVel: 0
+  maxYVel: 15
   angularSpeed: 720
   lifeTime: 2
 --- !u!114 &114951440239299868
