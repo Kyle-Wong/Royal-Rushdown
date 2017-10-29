@@ -131,7 +131,7 @@ public class FightZone : MonoBehaviour
                 boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(20, 2);
                 Spawn.enemyList.Remove(closestEnemy);
-                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .1f, GameController.maxSpeed);
+                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .05f, GameController.maxSpeed);
                 Destroy(closestEnemy);
                 killThisFrame = true;
             }

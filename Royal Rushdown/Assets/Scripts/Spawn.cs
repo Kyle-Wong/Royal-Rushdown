@@ -5,15 +5,17 @@ using UnityEngine;
 public class Spawn : MonoBehaviour {
 
 	float timer = 0f;
-	float min = .5f;
-	float range = 3f;
+	public float min = .5f;
+	public float range = 3f;
 	float totalTime = 0;
 	float spawnTime;
 	public GameObject spawnPrefab;
 
     public float averageNotes = 1;              //1-6ish
+    public int maxNotes = 4;
     public float noteCountVariation = 0.33f;        //+-percent
     public float NoteVariety = 1;               //1-4
+    public int maxNoteVariety = 3;
 
     public float averageNoteGrowth = 0.08f;
     public float noteVarietyGrowth = .12f;
@@ -28,8 +30,8 @@ public class Spawn : MonoBehaviour {
 
 	void SpawnMe(){        
 		GameObject newEnemy = (GameObject)Instantiate(spawnPrefab, transform.position, transform.rotation);
-        int numNotes = (int)Mathf.Max(1,averageNotes*(1+-noteCountVariation + Random.value*noteCountVariation*2));
-        int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, Mathf.Min(4,randFromAverage(NoteVariety)));
+        int numNotes = (int)Mathf.Clamp(averageNotes*(1+-noteCountVariation + Random.value*noteCountVariation*2),1,maxNotes);
+        int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, Mathf.Min(maxNoteVariety,randFromAverage(NoteVariety)));
         for(int i = 0; i < numNotes; ++i)
         {
             newEnemy.GetComponent<NoteManager>().addNote(distinctNotesList[Random.Range(0, distinctNotesList.Length-1)]);
@@ -40,7 +42,7 @@ public class Spawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer += Time.deltaTime;
+		timer += GameController.globalSpeed * Time.deltaTime;
 		if (timer >= spawnTime) {
 			SpawnMe();
 			timer = 0f;
