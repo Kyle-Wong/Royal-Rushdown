@@ -38,6 +38,10 @@ public class FightZone : MonoBehaviour
             occupied = true;
 
         }
+        else
+        {
+            occupied = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
