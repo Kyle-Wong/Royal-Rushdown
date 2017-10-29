@@ -21,6 +21,7 @@ public class Spawn : MonoBehaviour {
     public float noteVarietyGrowth = .12f;
     public float spawnTimeRangeDecrease = .15f;
     public static List<GameObject> enemyList;
+    public int maxEnemiesOnScreen = 4;
 	// Use this for initialization
 	void Start () {
 		spawnTime = min+range;
@@ -44,7 +45,10 @@ public class Spawn : MonoBehaviour {
 	void Update () {
 		timer += GameController.globalSpeed * Time.deltaTime;
 		if (timer >= spawnTime) {
-			SpawnMe();
+            if (enemyList.Count < maxEnemiesOnScreen)
+            {
+                SpawnMe();
+            }
 			timer = 0f;
 		}
 		totalTime += Time.deltaTime;
