@@ -15,6 +15,8 @@ public class Spawn : MonoBehaviour {
     public float noteCountVariation = 0.33f;        //+-percent
     public float NoteVariety = 1;               //1-4
 
+    public float averageNoteGrowth = 0.08f;
+    public float noteVarietyGrowth = .12f;
 	// Use this for initialization
 	void Start () {
 		spawnTime = min+range;
@@ -23,8 +25,8 @@ public class Spawn : MonoBehaviour {
 
 	void SpawnMe(){        
 		GameObject newEnemy = (GameObject)Instantiate(spawnPrefab, transform.position, transform.rotation);
-        int numNotes = randFromAverage(Mathf.Max(1,averageNotes*(-noteCountVariation + Random.value*noteCountVariation*2)));
-        int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, randFromAverage(NoteVariety));
+        int numNotes = (int)Mathf.Max(1,averageNotes*(1+-noteCountVariation + Random.value*noteCountVariation*2));
+        int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, Mathf.Min(4,randFromAverage(NoteVariety)));
         for(int i = 0; i < numNotes; ++i)
         {
             newEnemy.GetComponent<NoteManager>().addNote(distinctNotesList[Random.Range(0, distinctNotesList.Length-1)]);
@@ -35,7 +37,7 @@ public class Spawn : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 		if (timer >= spawnTime) {
-			SpawnMe ();
+			SpawnMe();
 			timer = 0f;
 		}
 		totalTime += Time.deltaTime;
@@ -46,8 +48,8 @@ public class Spawn : MonoBehaviour {
 		while (range > 0) {
 			range -= .2f;
 			spawnTime = min + range;
-            averageNotes += 0.1f;
-            NoteVariety += 0.08f;
+            averageNotes += averageNoteGrowth;
+            NoteVariety += noteVarietyGrowth;
 			yield return new WaitForSeconds (3.33f);
 		}
 	}
@@ -59,11 +61,19 @@ public class Spawn : MonoBehaviour {
     }
     private int[] subList(int[] list, int newLength)
     {
+        List<int> tempList = new List<int>(list);
         int[] result = new int[newLength];
+        string toPrint = "newList";
         for(int i = 0; i < newLength; ++i)
         {
-            result[i] = list[Random.Range(0, list.Length - 1)];
+            int rng = Random.Range(0, tempList.Count);
+            result[i] = tempList[rng];
+
+            tempList.RemoveAt(rng);
+            
+            toPrint += ":" + result[i];
         }
+        print(toPrint);
         return result;
     }
 }
