@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerEnemyInteraction : MonoBehaviour {
 	float health = 110;
+	SpriteRenderer render;
+	Color initialCol;
 
 	// Use this for initialization
 	void Start () {
-		
+		render = GetComponent<SpriteRenderer> ();
+		initialCol = render.color;
+
 	}
 	
 	// Update is called once per frame;
@@ -20,6 +24,10 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter2D(Collider2D other) {
+		StartCoroutine(gotHit());
+
+
+
 		if (health == 110) {
 			health -= 50;
 		} else {
@@ -29,6 +37,14 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 		if (health < 10) {
 			Destroy (gameObject);
 		} 
+	}
+
+	IEnumerator gotHit()
+	{
+		render.color = Color.Lerp (initialCol, Color.red, .25f);
+		yield return new WaitForSeconds(.25f);
+		render.color = Color.Lerp (initialCol, Color.red, 0);
+	
 	}
 
 }
