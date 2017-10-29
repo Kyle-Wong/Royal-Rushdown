@@ -116,7 +116,7 @@ public class LungeTrigger : MonoBehaviour {
 
             if (correctInput && !FightZone.occupied)
             {
-                GameController.globalSpeed = 5;
+                GameController.globalSpeed = 7;
                 if (lungedThisFrame)
                 {
                     int enemyCount = Spawn.enemyList.Count;

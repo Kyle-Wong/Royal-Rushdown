@@ -26,6 +26,9 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		StartCoroutine(gotHit());
         GameController.defaultSpeed *= 0.75f;
+        if (GameController.defaultSpeed < .6f) {
+            GameController.defaultSpeed = .6f;
+        }
 		if (health == 110) {
 			health -= 50;
 		} else {
