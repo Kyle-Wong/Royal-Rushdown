@@ -56,6 +56,10 @@ MonoBehaviour:
   direction: 1
   desiredOffset: 0
   moveDownSpeed: 10
+  upColor: {r: 1, g: 1, b: 0, a: 1}
+  rightColor: {r: 1, g: 0, b: 1, a: 1}
+  downColor: {r: 0, g: 1, b: 1, a: 1}
+  leftColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114332490059660502
 MonoBehaviour:
   m_ObjectHideFlags: 1

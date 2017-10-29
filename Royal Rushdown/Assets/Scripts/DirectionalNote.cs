@@ -12,6 +12,11 @@ public class DirectionalNote : MonoBehaviour {
     public Direction direction = Direction.Right;
     public float desiredOffset;
     public float moveDownSpeed;
+    public Color upColor;
+    public Color rightColor;
+    public Color downColor;
+    public Color leftColor;
+
     void Start () {
 
     }
@@ -47,15 +52,19 @@ public class DirectionalNote : MonoBehaviour {
         {
             case (Direction.Right):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                GetComponent<SpriteRenderer>().color = rightColor;
                 break;
             case (Direction.Down):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                GetComponent<SpriteRenderer>().color = downColor;
                 break;
             case (Direction.Left):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                GetComponent<SpriteRenderer>().color = leftColor;
                 break;
             case (Direction.Up):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                GetComponent<SpriteRenderer>().color = upColor;
                 break;
         }
     }
@@ -66,15 +75,19 @@ public class DirectionalNote : MonoBehaviour {
         {
             case (1):
                 transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+                GetComponent<SpriteRenderer>().color = rightColor;
                 break;
             case (2):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                GetComponent<SpriteRenderer>().color = downColor;
                 break;
             case (3):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                GetComponent<SpriteRenderer>().color = leftColor;
                 break;
             case (0):
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                GetComponent<SpriteRenderer>().color = upColor;
                 break;
         }
     }
