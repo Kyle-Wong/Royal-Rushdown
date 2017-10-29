@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 159991283}
   - component: {fileID: 159991282}
   m_Layer: 0
-  m_Name: New Sprite (1)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 398959637}
   - component: {fileID: 398959636}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 421222954}
   - component: {fileID: 421222953}
   m_Layer: 1
-  m_Name: New Sprite (3)
+  m_Name: AccelerationZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -800,16 +800,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818921894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.51874, y: -170.29999, z: 0}
+  m_LocalPosition: {x: 241.94373, y: -58.824997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1738293013}
-  m_RootOrder: 4
+  m_Father: {fileID: 826333660}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -0.3, y: 0}
   m_AnchorMax: {x: -0.05, y: 1}
-  m_AnchoredPosition: {x: 759.59375, y: -170.3}
-  m_SizeDelta: {x: -209.0625, y: -445.4}
+  m_AnchoredPosition: {x: 344.71246, y: -58.824997}
+  m_SizeDelta: {x: -94.875, y: -153.84998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818921899
 MonoBehaviour:
@@ -964,7 +964,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 106.57501, y: -111.475, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 818921898}
   m_Father: {fileID: 1738293013}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1131,7 +1132,7 @@ GameObject:
   - component: {fileID: 1241548019}
   - component: {fileID: 1241548022}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1146,7 +1147,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1462,7 +1463,7 @@ GameObject:
   - component: {fileID: 1435513376}
   - component: {fileID: 1435513375}
   m_Layer: 0
-  m_Name: New Sprite (2)
+  m_Name: FightZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1481,7 +1482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextNote: 0
   lister: []
-  knockBackVelocity: 13
+  knockBackVelocity: 0
 --- !u!61 &1435513376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1769,7 +1770,6 @@ RectTransform:
   - {fileID: 875464083}
   - {fileID: 110760478}
   - {fileID: 826333660}
-  - {fileID: 818921898}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
