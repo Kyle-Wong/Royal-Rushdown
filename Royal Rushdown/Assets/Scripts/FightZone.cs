@@ -63,7 +63,7 @@ public class FightZone : MonoBehaviour
             timer = 0;
         }
 
-        if (lister.Count > 0)
+        if (lister.Count > 0 && GameController.gameState == GameController.GameState.InGame)
         {
             closestEnemy = getClosestEnemy();
             nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
@@ -108,6 +108,7 @@ public class FightZone : MonoBehaviour
                 boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
                 Spawn.enemyList.Remove(closestEnemy);
+                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .1f, GameController.maxSpeed);
                 Destroy(closestEnemy);
             }
         }
