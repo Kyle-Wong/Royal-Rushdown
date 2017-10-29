@@ -11,7 +11,7 @@ public class NoteManager : MonoBehaviour {
     }
     public List<GameObject> noteList;
     public string prefabName;
-    public float listOffset;
+    public float listerffset;
     public float noteOffset;
     public bool debug = false;
     private void Awake()
@@ -43,14 +43,14 @@ public class NoteManager : MonoBehaviour {
     public void addNote(int dir)
     {
         GameObject newNote = (GameObject)Instantiate(Resources.Load(prefabName));
-        newNote.GetComponent<DirectionalNote>().followEnemy(gameObject.transform,listOffset+noteOffset*noteList.Count);
+        newNote.GetComponent<DirectionalNote>().followEnemy(gameObject.transform,listerffset+noteOffset*noteList.Count);
         newNote.GetComponent<DirectionalNote>().setDirection(dir);
         noteList.Add(newNote);
     }
     public void addNote(Direction dir)
     {
         GameObject newNote = (GameObject)Instantiate(Resources.Load(prefabName));
-        newNote.GetComponent<DirectionalNote>().followEnemy(gameObject.transform, listOffset + noteOffset * noteList.Count);
+        newNote.GetComponent<DirectionalNote>().followEnemy(gameObject.transform, listerffset + noteOffset * noteList.Count);
         newNote.GetComponent<DirectionalNote>().setDirection((int)dir);
         noteList.Add(newNote);
     }
@@ -65,7 +65,7 @@ public class NoteManager : MonoBehaviour {
             noteList.RemoveAt(0);
             for (int i = 0; i < noteList.Count; i++)
             {
-                noteList[i].GetComponent<DirectionalNote>().updateOffset(listOffset + noteOffset * i);
+                noteList[i].GetComponent<DirectionalNote>().updateOffset(listerffset + noteOffset * i);
             }
             
             return toReturn;

@@ -11,6 +11,7 @@ public class FightZone : MonoBehaviour
     public static bool hitReady;
     public static bool knockback;
     private GameObject closestEnemy;
+    public static bool inputThisFrame;
     // Use this for initialization
     void Start()
     {
