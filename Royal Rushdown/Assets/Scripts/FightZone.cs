@@ -7,7 +7,7 @@ public class FightZone : MonoBehaviour
 {
     public static float timer = 0;
     public int nextNote;
-    public List<GameObject> lister;
+    public static List<GameObject> lister;
     public static bool occupied = false;
     public static bool hitReady;
     private GameObject closestEnemy;
@@ -34,6 +34,8 @@ public class FightZone : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") == true)
         {
             insertGameObject(other.gameObject);
+            GameController.globalSpeed = GameController.defaultSpeed;
+
         }
 
     }
@@ -83,7 +85,7 @@ public class FightZone : MonoBehaviour
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockBackAllEnemies();
+                knockBackAllEnemies(knockBackVelocity/2);
                 CamShake.shaking = true;
                 attack();
             }
@@ -91,7 +93,7 @@ public class FightZone : MonoBehaviour
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockBackAllEnemies();
+                knockBackAllEnemies(knockBackVelocity/2);
                 CamShake.shaking = true;
                 attack();
 
@@ -100,7 +102,7 @@ public class FightZone : MonoBehaviour
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockBackAllEnemies();
+                knockBackAllEnemies(knockBackVelocity/2);
                 CamShake.shaking = true;
                 attack();
             }
@@ -108,7 +110,7 @@ public class FightZone : MonoBehaviour
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockBackAllEnemies();
+                knockBackAllEnemies(knockBackVelocity/2);
                 CamShake.shaking = true;
                 attack();
             }
@@ -117,7 +119,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
                 CamShake.shaking = true;
-                knockBackAllEnemies();
+                knockBackAllEnemies(knockBackVelocity*0.5f);
                 attack();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -131,9 +133,11 @@ public class FightZone : MonoBehaviour
                 boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(20, 2);
                 Spawn.enemyList.Remove(closestEnemy);
-                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .05f, GameController.maxSpeed);
+                GameController.defaultSpeed = Mathf.Min(GameController.defaultSpeed + .03f, GameController.maxSpeed);
                 Destroy(closestEnemy);
                 killThisFrame = true;
+                knockBackAllEnemies(knockBackVelocity);
+
             }
         }
     }
@@ -165,12 +169,12 @@ public class FightZone : MonoBehaviour
         }
         lister.Add(obj);
     }
-    public void knockBackAllEnemies()
+    public void knockBackAllEnemies(float force)
     {
         int enemyCount = Spawn.enemyList.Count;
         for(int i = 0; i < enemyCount; ++i)
         {
-            Spawn.enemyList[i].GetComponent<MoveLeft>().speed = -knockBackVelocity;
+            Spawn.enemyList[i].GetComponent<MoveLeft>().speed = -force;
         }
     }
     private void attack()

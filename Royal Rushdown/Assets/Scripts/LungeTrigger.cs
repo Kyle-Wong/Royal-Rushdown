@@ -5,7 +5,7 @@ using UnityEngine;
 public class LungeTrigger : MonoBehaviour {
 
     public int nextNote;
-    public List<GameObject> lister;
+    public static List<GameObject> lister;
     public static bool correctInput = false;
     public static bool destroyNext = false;
     private GameObject closestEnemy;
@@ -37,7 +37,6 @@ public class LungeTrigger : MonoBehaviour {
         {
             correctInput = false;
             lister.Remove(collision.gameObject);
-            GameController.globalSpeed = GameController.defaultSpeed;
         }
 
     }
@@ -146,6 +145,7 @@ public class LungeTrigger : MonoBehaviour {
                 index = i;
             }
         }
+        
         return lister[index];
     }
     public void insertGameObject(GameObject obj)
