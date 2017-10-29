@@ -12,7 +12,7 @@ public class FightZone : MonoBehaviour
     public static bool hitReady;
     private GameObject closestEnemy;
     public static bool killThisFrame;
-    public float knockBackVelocity = 3;
+    public float knockBackVelocity = 1.5f;
     public float holdAttackFrameDuration;
     private IEnumerator attackFrameFunction;
     public GameObject player;
