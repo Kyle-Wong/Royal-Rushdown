@@ -18,6 +18,7 @@ public class FightZone : MonoBehaviour
     public GameObject player;
     public Sprite[] attackFrames;
     private int lastAttackIndex;
+    public static int hitCounter = 0;
     // Use this for initialization
     void Start()
     {
@@ -174,6 +175,7 @@ public class FightZone : MonoBehaviour
     }
     private void attack()
     {
+        hitCounter++;
         StopCoroutine(attackFrameFunction);
         int rng = 0;
         while (attackFrames.Length > 1)
