@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEnemyInteraction : MonoBehaviour {
-	float health = 110;
+	public float health = 110;
 	SpriteRenderer render;
 	Color initialCol;
 	public GameController controller;
