@@ -105,12 +105,7 @@ public class LungeTrigger : MonoBehaviour {
                 GameController.globalSpeed = 1;
             }
         }
-        string result = "";
-        for(int i = 0; i < lister.Count; ++i)
-        {
-            result += lister[i].transform.position.x + ":";
-        }
-        print(result);
+        
     }
 	public GameObject getClosestEnemy()
     {

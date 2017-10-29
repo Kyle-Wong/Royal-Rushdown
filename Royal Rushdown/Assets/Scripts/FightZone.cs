@@ -138,4 +138,8 @@ public class FightZone : MonoBehaviour
         }
         lister.Add(obj);
     }
+    public void knockBackAllEnemies()
+    {
+
+    }
 }
