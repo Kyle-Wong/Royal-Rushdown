@@ -28,7 +28,6 @@ public class Spawn : MonoBehaviour {
 
 	void SpawnMe(){        
 		GameObject newEnemy = (GameObject)Instantiate(spawnPrefab, transform.position, transform.rotation);
-<<<<<<< Updated upstream
         int numNotes = (int)Mathf.Max(1,averageNotes*(1+-noteCountVariation + Random.value*noteCountVariation*2));
         int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, Mathf.Min(4,randFromAverage(NoteVariety)));
         for(int i = 0; i < numNotes; ++i)
@@ -36,14 +35,7 @@ public class Spawn : MonoBehaviour {
             newEnemy.GetComponent<NoteManager>().addNote(distinctNotesList[Random.Range(0, distinctNotesList.Length-1)]);
         }
         enemyList.Add(newEnemy);
-=======
-        int numNotes = (int)Mathf.Max(1,averageNotes*(1+-noteCountVariation + Random.value*noteCountVariation*2));
-        int[] distinctNotesList = subList(new int[] { 0, 1, 2, 3 }, Mathf.Min(4,randFromAverage(NoteVariety)));
-        for(int i = 0; i < numNotes; ++i)
-        {
-            newEnemy.GetComponent<NoteManager>().addNote(distinctNotesList[Random.Range(0, distinctNotesList.Length-1)]);
-        }
->>>>>>> Stashed changes
+
     }
 	
 	// Update is called once per frame
