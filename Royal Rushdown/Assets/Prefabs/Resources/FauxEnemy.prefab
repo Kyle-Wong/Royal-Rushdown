@@ -103,8 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   delete_at: -10
-  acceleration: 7
+  acceleration: 50
   maxSpeed: 5
+  startPos: 0
 --- !u!114 &114738952351864160
 MonoBehaviour:
   m_ObjectHideFlags: 1

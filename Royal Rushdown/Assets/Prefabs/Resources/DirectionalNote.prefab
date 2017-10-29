@@ -70,7 +70,7 @@ MonoBehaviour:
   playOn: 2
   startColor: {r: 0, g: 1, b: 1, a: 1}
   endColor: {r: 0, g: 1, b: 1, a: 0}
-  duration: 0.3
+  duration: 0.1
   initialDelay: 0.1
 --- !u!212 &212755599867239156
 SpriteRenderer:

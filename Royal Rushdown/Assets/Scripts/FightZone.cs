@@ -9,9 +9,9 @@ public class FightZone : MonoBehaviour
     public List<GameObject> lister;
     public static bool occupied = false;
     public static bool hitReady;
-    public static bool knockback;
     private GameObject closestEnemy;
     public static bool inputThisFrame;
+    public float knockBackVelocity = 0;
     // Use this for initialization
     void Start()
     {
@@ -70,31 +70,31 @@ public class FightZone : MonoBehaviour
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockback = true;
+                knockBackAllEnemies();
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockback = true;
+                knockBackAllEnemies();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockback = true;
+                knockBackAllEnemies();
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 closestEnemy.GetComponent<NoteManager>().removeFront();
-                knockback = true;
+                knockBackAllEnemies();
             }
             else if (LungeTrigger.destroyNext)
             {
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
-                knockback = true;
+                //knockBackAllEnemies();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -106,6 +106,7 @@ public class FightZone : MonoBehaviour
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
                 boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
+                Spawn.enemyList.Remove(closestEnemy);
                 Destroy(closestEnemy);
             }
         }
@@ -140,6 +141,10 @@ public class FightZone : MonoBehaviour
     }
     public void knockBackAllEnemies()
     {
-
+        int enemyCount = Spawn.enemyList.Count;
+        for(int i = 0; i < enemyCount; ++i)
+        {
+            Spawn.enemyList[i].GetComponent<MoveLeft>().speed = -knockBackVelocity;
+        }
     }
 }

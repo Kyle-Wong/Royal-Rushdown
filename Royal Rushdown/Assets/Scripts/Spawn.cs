@@ -18,10 +18,12 @@ public class Spawn : MonoBehaviour {
     public float averageNoteGrowth = 0.08f;
     public float noteVarietyGrowth = .12f;
     public float spawnTimeRangeDecrease = .15f;
+    public static List<GameObject> enemyList;
 	// Use this for initialization
 	void Start () {
 		spawnTime = min+range;
 		StartCoroutine(decreaseRange());
+        enemyList = new List<GameObject>();
 	}
 
 	void SpawnMe(){        
@@ -32,6 +34,7 @@ public class Spawn : MonoBehaviour {
         {
             newEnemy.GetComponent<NoteManager>().addNote(distinctNotesList[Random.Range(0, distinctNotesList.Length-1)]);
         }
+        enemyList.Add(newEnemy);
     }
 	
 	// Update is called once per frame
