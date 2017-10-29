@@ -137,7 +137,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 110760477}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -168, y: -170.3, z: 0}
+  m_LocalPosition: {x: -109.375, y: -114.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1318106947}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 159991283}
   - component: {fileID: 159991282}
   m_Layer: 0
-  m_Name: New Sprite (1)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,12 +384,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 398959640}
-  - component: {fileID: 398959639}
-  - component: {fileID: 398959638}
-  - component: {fileID: 398959637}
   - component: {fileID: 398959636}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,59 +411,6 @@ MonoBehaviour:
   averageNoteGrowth: 0.08
   noteVarietyGrowth: 0.12
   spawnTimeRangeDecrease: 0.1
---- !u!23 &398959637
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398959635}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!65 &398959638
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398959635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &398959639
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398959635}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &398959640
 Transform:
   m_ObjectHideFlags: 0
@@ -493,7 +437,7 @@ GameObject:
   - component: {fileID: 421222954}
   - component: {fileID: 421222953}
   m_Layer: 1
-  m_Name: New Sprite (3)
+  m_Name: LungeZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +796,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818921894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 111.59375, y: -170.29999, z: 0}
+  m_LocalPosition: {x: 337.71875, y: -170.29999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1738293013}
@@ -1014,7 +958,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 826333659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 168, y: -170.3, z: 0}
+  m_LocalPosition: {x: 109.375, y: -114.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1738293013}
@@ -1105,7 +1049,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 875464082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 131, z: 0}
+  m_LocalPosition: {x: 0, y: 88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1738293013}
@@ -1316,7 +1260,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1318106941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -162, y: 0, z: 0}
+  m_LocalPosition: {x: -105.46875, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 110760478}
@@ -1389,6 +1333,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1407135008 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1296894628405680, guid: b285aa79a3f05f44db76624ade929f8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 124864497}
 --- !u!1 &1435513374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1351,7 @@ GameObject:
   - component: {fileID: 1435513376}
   - component: {fileID: 1435513375}
   m_Layer: 9
-  m_Name: New Sprite (2)
+  m_Name: FightZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1422,6 +1371,10 @@ MonoBehaviour:
   nextNote: 0
   lister: []
   knockBackVelocity: 1.5
+  holdAttackFrameDuration: 0.3
+  player: {fileID: 1407135008}
+  attackFrames:
+  - {fileID: 21300000, guid: 5915e727c6b27104fa0640a417d80b6f, type: 3}
 --- !u!61 &1435513376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1610,7 +1563,7 @@ GameObject:
   - component: {fileID: 1615677086}
   - component: {fileID: 1615677090}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1714,7 +1667,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1738293012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 480, y: 262, z: 0}
+  m_LocalPosition: {x: 312.5, y: 176, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2144138614}
