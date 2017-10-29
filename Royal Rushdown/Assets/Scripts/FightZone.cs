@@ -10,7 +10,7 @@ public class FightZone : MonoBehaviour
     public static bool occupied = false;
     public static bool hitReady;
     public static bool knockback;
-
+    private GameObject closestEnemy;
     // Use this for initialization
     void Start()
     {
@@ -23,7 +23,7 @@ public class FightZone : MonoBehaviour
         occupied = true;
         if (other.gameObject.CompareTag("Enemy") == true)
         {
-            lister.Add(other.gameObject);
+            insertGameObject(other.gameObject);
         }
 
     }
@@ -42,8 +42,7 @@ public class FightZone : MonoBehaviour
         occupied = false;
         if (!collision.gameObject.Equals(null))
         {
-            Destroy(collision.gameObject);
-            lister.RemoveAt(0);
+            lister.Remove(collision.gameObject);
         }
 
     }
@@ -64,51 +63,78 @@ public class FightZone : MonoBehaviour
 
         if (lister.Count > 0)
         {
-            print(lister.Count);
-            nextNote = lister[0].GetComponent<NoteManager>().getNextNoteDirection();
+            closestEnemy = getClosestEnemy();
+            nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0 && hitReady)
             {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
+                closestEnemy.GetComponent<ColorLerp>().startColorChange();
+                closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady)
             {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
+                closestEnemy.GetComponent<ColorLerp>().startColorChange();
+                closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady)
             {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
+                closestEnemy.GetComponent<ColorLerp>().startColorChange();
+                closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockback = true;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady)
             {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
+                closestEnemy.GetComponent<ColorLerp>().startColorChange();
+                closestEnemy.GetComponent<NoteManager>().removeFront();
                 knockback = true;
             }
             else if (LungeTrigger.destroyNext)
             {
-                lister[0].GetComponent<ColorLerp>().startColorChange();
-                lister[0].GetComponent<NoteManager>().removeFront();
+                closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
                 knockback = true;
             }
-            else
+            else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                //hitReady = false;
-                hitReady = true;
+                closestEnemy.GetComponent<NoteManager>().flashColor(Color.red, Color.white, 0.15f, 0.3f);
             }
-            if (lister[0].gameObject.GetComponent<NoteManager>().empty())
+            
+            if (closestEnemy.gameObject.GetComponent<NoteManager>().empty())
             {
                 GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
-                boneExplosion.transform.position = lister[0].transform.position;
+                boneExplosion.transform.position = closestEnemy.transform.position;
                 boneExplosion.GetComponent<ParticleExplosion>().explode(15, 2);
-                Destroy(lister[0]);
+                Destroy(closestEnemy);
             }
         }
+    }
+    public GameObject getClosestEnemy()
+    {
+        float min = 10000000;
+        int index = 0;
+        for (int i = 0; i < lister.Count; ++i)
+        {
+            if (lister[i].transform.position.x < min)
+            {
+                min = lister[i].transform.position.x;
+                index = i;
+            }
+        }
+        return lister[index];
+    }
+    public void insertGameObject(GameObject obj)
+    {
+        //front->lowestX->highestX->end
+
+        for (int i = 0; i < lister.Count; ++i)
+        {
+            if (obj.transform.position.x < lister[i].transform.position.x)
+            {
+                lister.Insert(i, obj);
+                return;
+            }
+        }
+        lister.Add(obj);
     }
 }

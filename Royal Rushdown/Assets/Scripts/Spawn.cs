@@ -17,6 +17,7 @@ public class Spawn : MonoBehaviour {
 
     public float averageNoteGrowth = 0.08f;
     public float noteVarietyGrowth = .12f;
+    public float spawnTimeRangeDecrease = .15f;
 	// Use this for initialization
 	void Start () {
 		spawnTime = min+range;
@@ -46,8 +47,8 @@ public class Spawn : MonoBehaviour {
 	IEnumerator decreaseRange()
 	{
 		while (range > 0) {
-			range -= .2f;
-			spawnTime = min + range;
+			range -= spawnTimeRangeDecrease;
+			spawnTime = min + Random.Range(0,range);
             averageNotes += averageNoteGrowth;
             NoteVariety += noteVarietyGrowth;
 			yield return new WaitForSeconds (3.33f);

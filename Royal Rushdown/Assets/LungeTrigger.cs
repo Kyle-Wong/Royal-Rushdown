@@ -5,14 +5,14 @@ using UnityEngine;
 public class LungeTrigger : MonoBehaviour {
 
     public int nextNote;
-    public List<GameObject> listo;
+    public List<GameObject> lister;
     public static bool correctInput = false;
     public static bool destroyNext = false;
-
+    private GameObject closestEnemy;
 
     // Use this for initialization
     void Start () {
-        listo = new List<GameObject>();
+        lister = new List<GameObject>();
 
     }
 
@@ -20,7 +20,7 @@ public class LungeTrigger : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Enemy") == true)
         {
-            listo.Add(other.gameObject);
+            insertGameObject(other.gameObject);
         }
 
     }
@@ -28,40 +28,71 @@ public class LungeTrigger : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Enemy") == true)
-        { 
-            print(listo.Count);
-            nextNote = listo[0].GetComponent<NoteManager>().getNextNoteDirection();
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.gameObject.Equals(null))
+        {
+            correctInput = false;
+            lister.Remove(collision.gameObject);
+            GameController.globalSpeed = 1;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (lister.Count >= 1)
+        {
+            if (lister[0].gameObject.Equals(null))
+            {
+                lister.RemoveAt(0);
+            }
+        }
+        if (lister.Count >= 1 && !FightZone.occupied)
+        {
+            closestEnemy = getClosestEnemy();
+            nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
             if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
             {
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
                     destroyNext = true;
+                    closestEnemy.GetComponent<NoteManager>().removeFront();
+
                 }
             }
-            else if (Input.GetKey(KeyCode.RightArrow) && nextNote == 1)
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
             {
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
                     destroyNext = true;
+                    closestEnemy.GetComponent<NoteManager>().removeFront();
+
                 }
             }
-            else if (Input.GetKey(KeyCode.DownArrow) && nextNote == 2)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
             {
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
                     destroyNext = true;
+                    closestEnemy.GetComponent<NoteManager>().removeFront();
+
                 }
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && nextNote == 3)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
             {
                 correctInput = true;
                 if (!FightZone.occupied)
                 {
                     destroyNext = true;
+                    closestEnemy.GetComponent<NoteManager>().removeFront();
+
                 }
             }
 
@@ -74,28 +105,40 @@ public class LungeTrigger : MonoBehaviour {
                 GameController.globalSpeed = 1;
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!collision.gameObject.Equals(null))
+        string result = "";
+        for(int i = 0; i < lister.Count; ++i)
         {
-            correctInput = false;
-            listo.RemoveAt(0);
-            GameController.globalSpeed = 1;
+            result += lister[i].transform.position.x + ":";
         }
-
+        print(result);
     }
-
-    // Update is called once per frame
-    void Update() {
-        if (listo.Count > 1)
+	public GameObject getClosestEnemy()
+    {
+        float min = 10000000;
+        int index = 0;
+        for(int i = 0; i < lister.Count; ++i)
         {
-            if (listo[0].gameObject.Equals(null))
+            if(lister[i].transform.position.x < min)
             {
-                listo.RemoveAt(0);
+                min = lister[i].transform.position.x;
+                index = i;
             }
         }
+        return lister[index];
     }
-	
+    public void insertGameObject(GameObject obj)
+    {   
+        //front->lowestX->highestX->end
+
+        for(int i = 0; i < lister.Count; ++i)
+        {
+            if(obj.transform.position.x < lister[i].transform.position.x)
+            {
+                lister.Insert(i, obj);
+                return;
+            }
+        }
+        lister.Add(obj);
+    }
+
 }
