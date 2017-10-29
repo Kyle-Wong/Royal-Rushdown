@@ -12,7 +12,7 @@ public class FightZone : MonoBehaviour
     public static bool hitReady;
     private GameObject closestEnemy;
     public static bool killThisFrame;
-    public float knockBackVelocity = 0;
+    public float knockBackVelocity = 3;
     
     // Use this for initialization
     void Start()
@@ -104,7 +104,7 @@ public class FightZone : MonoBehaviour
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
                 LungeTrigger.destroyNext = false;
                 CamShake.shaking = true;
-                //knockBackAllEnemies();
+                knockBackAllEnemies();
             }
             else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {

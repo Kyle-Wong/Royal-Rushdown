@@ -99,7 +99,7 @@ public class LungeTrigger : MonoBehaviour {
 
             if (correctInput && !FightZone.occupied)
             {
-                GameController.globalSpeed = 10;
+                GameController.globalSpeed = 5;
             }
             else
             {

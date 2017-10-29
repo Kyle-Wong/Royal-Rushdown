@@ -26,8 +26,8 @@ public class CamShake : MonoBehaviour {
         {
             if (xShake == 0)
             {
-                xShake = Random.Range(-.2f, .2f);
-                yShake = Random.Range(-.2f, .2f);
+                xShake = Random.Range(-.4f, .4f);
+                yShake = Random.Range(-.4f, .4f);
             }
 
             timer += timer + Time.deltaTime;
