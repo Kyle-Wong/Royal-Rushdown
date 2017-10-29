@@ -50,8 +50,6 @@ public class FightZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(timer);
-        print(hitReady);
 
         if (!hitReady) { 
         timer = timer + Time.deltaTime;
