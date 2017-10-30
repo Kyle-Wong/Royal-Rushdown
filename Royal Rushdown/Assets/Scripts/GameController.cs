@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
     public Font defaultFont;
     public Font activeFont;
     private GameObject[] deathScreenUI;
+    public GraphicColorLerp blackOverlay;
     private void Awake()
     {
         globalSpeed = 1f;
@@ -91,11 +92,17 @@ public class GameController : MonoBehaviour {
     }
     public void restartButtonPress()
     {
-        SceneManager.LoadScene("GameplayScene");
+        blackOverlay.startColor = new Color(0, 0, 0, 0);
+        blackOverlay.endColor = new Color(0, 0, 0, 1);
+        blackOverlay.startColorChange();
+        StartCoroutine(loadAfterDelay(blackOverlay.duration, "GameplayScene"));
     }
     public void mainMenuButtonPress()
     {
-        SceneManager.LoadScene("MainMenu");
+        blackOverlay.startColor = new Color(0, 0, 0, 0);
+        blackOverlay.endColor = new Color(0, 0, 0, 1);
+        blackOverlay.startColorChange();
+        StartCoroutine(loadAfterDelay(blackOverlay.duration, "MainMenu"));
     }
     public int getGameState()
     {
@@ -114,5 +121,10 @@ public class GameController : MonoBehaviour {
                 revealDeathScreen();
                 break;
         }
+    }
+    private IEnumerator loadAfterDelay(float delay, string sceneName)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }
