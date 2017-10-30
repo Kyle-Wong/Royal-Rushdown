@@ -14,8 +14,9 @@ public class LoopBackground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += Vector3.left * speed * Time.deltaTime * GameController.globalSpeed;
-        if(transform.position.x < loopX && GameController.gameState == GameController.GameState.InGame)
+        if (GameController.gameState == GameController.GameState.InGame)
+            transform.position += Vector3.left * speed * Time.deltaTime * GameController.globalSpeed;
+        if(transform.position.x < loopX)
         {
             transform.position += Vector3.right * spriteWidth;
         }

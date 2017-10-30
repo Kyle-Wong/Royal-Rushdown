@@ -7,11 +7,13 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 	SpriteRenderer render;
 	Color initialCol;
 	public GameController controller;
-
+    public AudioSource soundManager;
+    public AudioClip hitSound;
 	// Use this for initialization
 	void Start () {
 		render = GetComponent<SpriteRenderer> ();
 		initialCol = render.color;
+        
 	}
 	
 	// Update is called once per frame;
@@ -25,6 +27,7 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 		
 	void OnTriggerEnter2D(Collider2D other) {
 		StartCoroutine(gotHit());
+        soundManager.PlayOneShot(hitSound);
         GameController.defaultSpeed *= 0.75f;
         if (GameController.defaultSpeed < .6f) {
             GameController.defaultSpeed = .6f;
