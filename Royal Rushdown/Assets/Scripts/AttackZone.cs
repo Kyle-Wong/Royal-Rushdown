@@ -17,6 +17,8 @@ public class AttackZone : MonoBehaviour {
     public Sprite[] attackFrames;
     private int lastAttackIndex;
     public static int combo = 0;
+    public static bool hitReady = true;
+    public static float timer = 0;
     void Start () {
         enemies = new List<GameObject>();
         attackFrameFunction = holdAttackFrame(0, 0);
@@ -29,34 +31,50 @@ public class AttackZone : MonoBehaviour {
         {
             GameObject closestEnemy = getClosestEnemy();
             int nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
-            if(Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if(Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1)
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if(Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if(Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) && hitReady){
+                hitReady = false;
+                closestEnemy.GetComponent<NoteManager>().flashColor(Color.white, Color.red, .15f, .01f);
+                closestEnemy.GetComponent<NoteManager>().flashSize();
+            }
+
+            if (!hitReady)
+            {
+                timer += Time.deltaTime;
+                if(timer > 0.15)
+                {
+                    hitReady = true;
+                    timer = 0;
+                }
+            }
+
             if (hitNextEnemy)
             {
                 if(closestEnemy.transform.position.x < attackX)

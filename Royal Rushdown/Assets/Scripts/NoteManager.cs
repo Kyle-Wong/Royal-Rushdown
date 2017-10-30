@@ -14,6 +14,8 @@ public class NoteManager : MonoBehaviour {
     public float listOffset;
     public float noteOffset;
     public bool debug = false;
+    public static bool flashing = false;
+    public static float timer = 0;
     private void Awake()
     {
         noteList = new List<GameObject>();
@@ -32,6 +34,32 @@ public class NoteManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (flashing)
+        {
+            if (noteList.Count > 0 && !noteList[0].Equals(null))
+            {
+                noteList[0].transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+
+
+                timer += Time.deltaTime;
+                if (timer > .1f)
+                {
+                    flashing = false;
+                    timer = 0;
+                }
+            }
+        }
+        else
+        {
+            
+            if (noteList.Count > 0 && !noteList[0].Equals(null))
+            {
+
+                noteList[0].transform.localScale = new Vector3(1, 1, 1);
+            }
+
+        }
         if (debug && Input.GetKeyDown(KeyCode.Space))
         {
             printNotes();
@@ -116,4 +144,10 @@ public class NoteManager : MonoBehaviour {
             print("NO NOTES TO BE FOUND HERE");
         }
     }
+
+    public void flashSize()
+    {
+        flashing = true;
+    }
+
 }
