@@ -45,7 +45,7 @@ public class Spawn : MonoBehaviour {
 	void Update () {
 		timer += GameController.globalSpeed * Time.deltaTime;
 		if (timer >= spawnTime) {
-            if (enemyList.Count < maxEnemiesOnScreen)
+            if (enemyList.Count < maxEnemiesOnScreen && GameController.gameState == GameController.GameState.InGame)
             {
                 SpawnMe();
             }
