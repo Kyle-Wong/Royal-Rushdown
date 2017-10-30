@@ -17,7 +17,7 @@ public class AttackZone : MonoBehaviour {
     public Sprite[] attackFrames;
     private int lastAttackIndex;
     public static int combo = 0;
-    public static int superCharge;
+    public static int superCharge = 0;
     public static bool superReady = false;
     public static bool hitReady = true;
     public static float timer = 0;

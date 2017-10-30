@@ -42,6 +42,7 @@ public class SuperMoveSpawn : MonoBehaviour
         else if(freddyCount >= 10)
         {
             superUsed = false;
+            AttackZone.superCharge = 0;
             freddyCount = 0;
         }
     }

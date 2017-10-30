@@ -46,12 +46,12 @@ public class GameController : MonoBehaviour {
 
         if (globalSpeed < 1)
         {
-            globalSpeed += .01f;
+            globalSpeed += .1f;
         }
 
         if(defaultSpeed < 1)
         {
-            defaultSpeed += .01f;
+            defaultSpeed += .1f;
         }
 
         switch (gameState)
