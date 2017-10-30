@@ -17,6 +17,7 @@ public class AttackZone : MonoBehaviour {
     public Sprite[] attackFrames;
     private int lastAttackIndex;
     public static int combo = 0;
+    public static bool superReady = false;
     public static bool hitReady = true;
     public static float timer = 0;
     private SoundEffectPlayer soundPlayer;
@@ -29,6 +30,11 @@ public class AttackZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(combo%100 == 0)
+        {
+            superReady = true;
+        }
+
 		if(enemies.Count > 0 && GameController.gameState == GameController.GameState.InGame)
         {
             GameObject closestEnemy = getClosestEnemy();
@@ -66,6 +72,10 @@ public class AttackZone : MonoBehaviour {
                 hitReady = false;
                 closestEnemy.GetComponent<NoteManager>().flashColor(Color.white, Color.red, .15f, .01f);
                 closestEnemy.GetComponent<NoteManager>().flashSize();
+            }else if(Input.GetKeyDown(KeyCode.Space))
+            {
+                SuperMoveSpawn.superUsed = true;
+                superReady = false;
             }
 
             if (!hitReady)
