@@ -45,7 +45,7 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 
 	IEnumerator gotHit()
 	{
-        FightZone.hitCounter = 0;
+        AttackZone.combo = 0;
 		render.color = Color.Lerp (initialCol, Color.red, .25f);
 		yield return new WaitForSeconds(.25f);
 		render.color = Color.Lerp (initialCol, Color.red, 0);

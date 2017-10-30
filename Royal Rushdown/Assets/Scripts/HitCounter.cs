@@ -16,8 +16,8 @@ public class HitCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Text>().text = FightZone.hitCounter + "x";
-        if(FightZone.hitCounter%10 == 0)
+        GetComponent<Text>().text = AttackZone.combo + "x";
+        if(AttackZone.combo%10 == 0)
             GetComponent<Text>().color = Color.Lerp(startColor, endColor, FightZone.hitCounter*1f / endColorShiftAt);
     }
 }
