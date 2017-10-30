@@ -18,21 +18,21 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 	void Update () {
 		if (health < 100)
 		{
-			health = Mathf.Clamp (health + Time.deltaTime*3, 0, 100);
+			health = Mathf.Clamp (health + Time.deltaTime*1, 0, 100);
 		}
 
 	}
 		
 	void OnTriggerEnter2D(Collider2D other) {
 		StartCoroutine(gotHit());
-        GameController.defaultSpeed *= 0.5f;
+        GameController.defaultSpeed *= 0.75f;
         if (GameController.defaultSpeed < .6f) {
             GameController.defaultSpeed = .6f;
         }
         GameController.globalSpeed = GameController.defaultSpeed;
 
 
-        health -= 20;
+        health -= 60;
 
 		if (health < 0) {
 			print ("before state is changed");
