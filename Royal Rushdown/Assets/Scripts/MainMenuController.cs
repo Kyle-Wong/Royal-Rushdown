@@ -22,9 +22,13 @@ public class MainMenuController : MonoBehaviour {
     public GameObject credits;
     public float creditsInitialDelay = 0;
     public float creditsRepeatDelay = 0;
+    private GameObject selectedButton;
+    public AudioClip buttonSelectSound;
     private IEnumerator creditsReveal;
+
 	void Start () {
         creditsReveal = revealCredits();
+        selectedButton = eventSystem.currentSelectedGameObject;
 	}
     void Update()
     {
@@ -38,23 +42,11 @@ public class MainMenuController : MonoBehaviour {
     }
     private void updateMainMenu()
     {
-        //if (eventSystem.currentSelectedGameObject == playButton)
-        //{
-        //} else
-        //{
-        //}
-        //if (eventSystem.currentSelectedGameObject == creditsButton)
-        //{
-        //}
-        //else
-        //{
-        //}
-        //if (eventSystem.currentSelectedGameObject == quitButton)
-        //{
-        //}
-        //else
-        //{
-        //}
+        if(selectedButton != eventSystem.currentSelectedGameObject && !Input.GetKeyDown(KeyCode.Return) && !Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<AudioSource>().PlayOneShot(buttonSelectSound);
+        }
+        selectedButton = eventSystem.currentSelectedGameObject;
     }
     
     private IEnumerator revealCredits()
@@ -84,6 +76,7 @@ public class MainMenuController : MonoBehaviour {
         
         creditsReveal = revealCredits();
         StartCoroutine(creditsReveal);
+        menuState = MenuState.Credits;
     }
     public void quitButtonPress()
     {
@@ -100,5 +93,6 @@ public class MainMenuController : MonoBehaviour {
             roleList[i].hideImmediately();
         }
         credits.SetActive(false);
+        menuState = MenuState.MainMenu;
     }
 }
