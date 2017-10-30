@@ -311,7 +311,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 628edbb090456dc41880ca9470673f9c, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4282318847
+    rgba: 4283236351
 --- !u!114 &114040652220895350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -359,8 +359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOn: 0
-  startColor: {r: 1, g: 1, b: 0.24313726, a: 1}
-  endColor: {r: 1, g: 1, b: 0.24313726, a: 0}
+  startColor: {r: 1, g: 1, b: 0.29803923, a: 1}
+  endColor: {r: 1, g: 1, b: 0.29803923, a: 0}
   duration: 0.33
   initialDelay: 0.67
 --- !u!114 &114465475456078118
