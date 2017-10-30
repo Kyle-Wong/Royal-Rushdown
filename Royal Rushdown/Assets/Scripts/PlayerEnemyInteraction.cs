@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEnemyInteraction : MonoBehaviour {
-	public float health = 110;
+	public float health = 100;
 	SpriteRenderer render;
 	Color initialCol;
 	public GameController controller;
@@ -25,17 +25,16 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 		
 	void OnTriggerEnter2D(Collider2D other) {
 		StartCoroutine(gotHit());
-        GameController.defaultSpeed *= 0.75f;
+        GameController.defaultSpeed *= 0.5f;
         if (GameController.defaultSpeed < .6f) {
             GameController.defaultSpeed = .6f;
         }
-		if (health == 110) {
-			health -= 50;
-		} else {
-			health -= (health * .3f);
-		}
+        GameController.globalSpeed = GameController.defaultSpeed;
 
-		if (health < 10) {
+
+        health -= 20;
+
+		if (health < 0) {
 			print ("before state is changed");
 			controller.setGameState (2);
 			print ("state should be changed");

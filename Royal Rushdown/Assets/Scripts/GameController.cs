@@ -42,6 +42,17 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (globalSpeed < 1)
+        {
+            globalSpeed += .01f;
+        }
+
+        if(defaultSpeed < 1)
+        {
+            defaultSpeed += .01f;
+        }
+
         switch (gameState)
         {
             case (GameState.PreGame):
