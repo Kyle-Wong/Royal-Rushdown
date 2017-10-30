@@ -19,10 +19,12 @@ public class AttackZone : MonoBehaviour {
     public static int combo = 0;
     public static bool hitReady = true;
     public static float timer = 0;
+    private SoundEffectPlayer soundPlayer;
     void Start () {
         enemies = new List<GameObject>();
         attackFrameFunction = holdAttackFrame(0, 0);
         lastAttackIndex = 0;
+        soundPlayer = GetComponent<SoundEffectPlayer>();
     }
 	
 	// Update is called once per frame
@@ -83,6 +85,7 @@ public class AttackZone : MonoBehaviour {
                     knockBackAllEnemies(knockBackVelocity/2);
                     attack();
                     CamShake.shaking = true;
+                    soundPlayer.playRandomSound();
                     if (closestEnemy.gameObject.GetComponent<NoteManager>().empty())
                     {
                         GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));

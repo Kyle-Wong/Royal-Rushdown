@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  attackX: -3.233
+  attackX: -6
   knockBackVelocity: 1.5
   holdAttackFrameDuration: 0.3
   attackFrames:
