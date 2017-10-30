@@ -17,6 +17,7 @@ public class AttackZone : MonoBehaviour {
     public Sprite[] attackFrames;
     private int lastAttackIndex;
     public static int combo = 0;
+    public static int superCharge;
     public static bool superReady = false;
     public static bool hitReady = true;
     public static float timer = 0;
@@ -30,9 +31,9 @@ public class AttackZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(combo%100 == 0)
+        if(superCharge > 100)
         {
-            combo++;
+            superCharge-=100;
             superReady = true;
         }
 
@@ -73,7 +74,7 @@ public class AttackZone : MonoBehaviour {
                 hitReady = false;
                 closestEnemy.GetComponent<NoteManager>().flashColor(Color.white, Color.red, .15f, .01f);
                 closestEnemy.GetComponent<NoteManager>().flashSize();
-            }else if(Input.GetKeyDown(KeyCode.Space))
+            }else if(Input.GetKeyDown(KeyCode.Space) && superReady)
             {
                 SuperMoveSpawn.superUsed = true;
                 superReady = false;
@@ -165,6 +166,7 @@ public class AttackZone : MonoBehaviour {
     private void attack()
     {
         combo++;
+        superCharge++;
         StopCoroutine(attackFrameFunction);
         int rng = 0;
         while (attackFrames.Length > 1)

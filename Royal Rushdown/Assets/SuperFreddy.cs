@@ -16,6 +16,7 @@ public class SuperFreddy : MonoBehaviour {
         {
             Spawn.enemyList.Remove(other.gameObject);
             Destroy(other.gameObject);
+            AttackZone.combo++;
         }
     }
 
