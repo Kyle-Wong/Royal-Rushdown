@@ -10,9 +10,9 @@ public class SuperBar : MonoBehaviour {
     private Text spaceText;
     
 	void Start () {
-        insideBar = transform.GetChild(0).GetComponent<RectTransform>();
-        insideImage = transform.GetChild(0).GetComponent<Image>();
-        spaceText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        insideBar = transform.GetChild(1).GetComponent<RectTransform>();
+        insideImage = transform.GetChild(1).GetComponent<Image>();
+        spaceText = transform.GetChild(1).GetChild(0).GetComponent<Text>();
         spaceText.enabled = false;
         
 	}
