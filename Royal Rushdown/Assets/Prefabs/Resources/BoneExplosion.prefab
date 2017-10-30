@@ -232,7 +232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipList:
   - {fileID: 8300000, guid: 4ad57f7f871980347903b09f0b5bc5b0, type: 3}
-  - {fileID: 8300000, guid: ea08b6be09e5ac647b7170b731b7df5f, type: 3}
 --- !u!114 &114951440239299868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,7 +305,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1346687886
+  randomSeed: -1626958689
   InitialModule:
     serializedVersion: 3
     enabled: 1
