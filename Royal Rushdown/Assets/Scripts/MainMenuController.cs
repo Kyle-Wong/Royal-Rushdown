@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour {
     private GameObject selectedButton;
     public AudioClip buttonSelectSound;
     private IEnumerator creditsReveal;
-
+    public GraphicColorLerp blackOverlay;
 	void Start () {
         creditsReveal = revealCredits();
         selectedButton = eventSystem.currentSelectedGameObject;
@@ -67,7 +67,11 @@ public class MainMenuController : MonoBehaviour {
 	
     public void playButtonPress()
     {
-        SceneManager.LoadScene("GameplayScene");
+        eventSystem.SetSelectedGameObject(null);
+        blackOverlay.startColor = new Color(0, 0, 0, 0);
+        blackOverlay.endColor = new Color(0, 0, 0, 1);
+        blackOverlay.startColorChange();
+        StartCoroutine(loadAfterTime(blackOverlay.duration));
     }
     public void creditsButtonPress()
     {
@@ -94,5 +98,10 @@ public class MainMenuController : MonoBehaviour {
         }
         credits.SetActive(false);
         menuState = MenuState.MainMenu;
+    }
+    private IEnumerator loadAfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("GameplayScene");
     }
 }

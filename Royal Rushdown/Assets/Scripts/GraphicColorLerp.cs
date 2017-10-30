@@ -32,6 +32,7 @@ public class GraphicColorLerp : MonoBehaviour
     }
     void Start()
     {
+        graphicRenderer.enabled = true;
         if (playOn == PlayTrigger.Start)
             startColorChange();
     }
