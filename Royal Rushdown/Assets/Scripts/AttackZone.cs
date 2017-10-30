@@ -23,6 +23,8 @@ public class AttackZone : MonoBehaviour {
     public static float timer = 0;
     private SoundEffectPlayer soundPlayer;
     void Start () {
+        combo = 0;
+        superCharge = 0;
         enemies = new List<GameObject>();
         attackFrameFunction = holdAttackFrame(0, 0);
         lastAttackIndex = 0;
@@ -31,9 +33,8 @@ public class AttackZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(superCharge > 100)
+        if(superCharge >= 100)
         {
-            superCharge-=100;
             superReady = true;
         }
 
@@ -166,7 +167,7 @@ public class AttackZone : MonoBehaviour {
     private void attack()
     {
         combo++;
-        superCharge++;
+        superCharge = Mathf.Clamp(superCharge + 1, 0, 100);
         StopCoroutine(attackFrameFunction);
         int rng = 0;
         while (attackFrames.Length > 1)
