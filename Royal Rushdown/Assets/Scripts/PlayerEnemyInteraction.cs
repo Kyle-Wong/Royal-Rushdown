@@ -35,7 +35,7 @@ public class PlayerEnemyInteraction : MonoBehaviour {
         GameController.globalSpeed = GameController.defaultSpeed;
 
 
-        health -= 60;
+        health -= 35;
 
 		if (health < 0) {
 			print ("before state is changed");
