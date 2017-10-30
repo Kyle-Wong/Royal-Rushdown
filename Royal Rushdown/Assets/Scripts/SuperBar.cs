@@ -21,12 +21,12 @@ public class SuperBar : MonoBehaviour {
 	void Update () {
 		if(GameController.gameState == GameController.GameState.InGame)
         {
-            insideBar.anchorMax = new Vector2(Mathf.Clamp(AttackZone.combo * 1f / 100, 0, 1), 1);
-            if(AttackZone.combo <= 99)
+            insideBar.anchorMax = new Vector2(Mathf.Clamp(AttackZone.superCharge * 1f / 100, 0, 1), 1);
+            if(AttackZone.superCharge <= 99)
             {
                 spaceText.enabled = false;
                 insideImage.color = new Color(1, 1, .29f, 1);
-            } else if(AttackZone.combo >= 100)
+            } else if(AttackZone.superCharge >= 100)
             {
                 spaceText.enabled = true;
                 insideImage.color = Color.red;
