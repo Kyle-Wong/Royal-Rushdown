@@ -33,35 +33,36 @@ public class AttackZone : MonoBehaviour {
         {
             GameObject closestEnemy = getClosestEnemy();
             int nextNote = closestEnemy.GetComponent<NoteManager>().getNextNoteDirection();
-            if (Input.GetKeyDown(KeyCode.UpArrow) && nextNote == 0 && hitReady == true)
+            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && nextNote == 0 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && nextNote == 1 && hitReady == true)
+            else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && nextNote == 1 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && nextNote == 2 && hitReady == true)
+            else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && nextNote == 2 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && nextNote == 3 && hitReady == true)
+            else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && nextNote == 3 && hitReady == true)
             {
                 hitNextEnemy = true;
                 closestEnemy.GetComponent<NoteManager>().removeFront();
                 closestEnemy.GetComponent<ColorLerp>().startColorChange();
 
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) && hitReady){
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)
+                || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && hitReady){
                 hitReady = false;
                 closestEnemy.GetComponent<NoteManager>().flashColor(Color.white, Color.red, .15f, .01f);
                 closestEnemy.GetComponent<NoteManager>().flashSize();
