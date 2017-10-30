@@ -15,6 +15,9 @@ public class SuperFreddy : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Spawn.enemyList.Remove(other.gameObject);
+            GameObject boneExplosion = (GameObject)Instantiate(Resources.Load("BoneExplosion"));
+            boneExplosion.transform.position = other.gameObject.transform.position + Vector3.down * 0.5f;
+            boneExplosion.GetComponent<ParticleExplosion>().explode(20, 3);
             Destroy(other.gameObject);
             AttackZone.combo++;
         }
