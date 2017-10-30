@@ -26,23 +26,28 @@ public class PlayerEnemyInteraction : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter2D(Collider2D other) {
-		StartCoroutine(gotHit());
-        soundManager.PlayOneShot(hitSound);
-        GameController.defaultSpeed *= 0.75f;
-        if (GameController.defaultSpeed < .6f) {
-            GameController.defaultSpeed = .6f;
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(gotHit());
+            soundManager.PlayOneShot(hitSound);
+            GameController.defaultSpeed *= 0.75f;
+            if (GameController.defaultSpeed < .6f)
+            {
+                GameController.defaultSpeed = .6f;
+            }
+            GameController.globalSpeed = GameController.defaultSpeed;
+
+
+            health -= 35;
+
+            if (health < 0)
+            {
+                print("before state is changed");
+                controller.setGameState(2);
+                print("state should be changed");
+                Destroy(gameObject);
+            }
         }
-        GameController.globalSpeed = GameController.defaultSpeed;
-
-
-        health -= 35;
-
-		if (health < 0) {
-			print ("before state is changed");
-			controller.setGameState (2);
-			print ("state should be changed");
-			Destroy (gameObject);
-		} 
 	}
 
 	IEnumerator gotHit()
