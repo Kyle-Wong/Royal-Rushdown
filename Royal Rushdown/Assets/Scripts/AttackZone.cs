@@ -32,6 +32,7 @@ public class AttackZone : MonoBehaviour {
 	void Update () {
         if(combo%100 == 0)
         {
+            combo++;
             superReady = true;
         }
 
